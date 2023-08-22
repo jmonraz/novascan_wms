@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import style from "./Products.module.css";
 
 import ButtonSleeve from "../../components/common/ButtonSleeve";
 import Table from "../../components/common/Table";
 import OverlayBox from "../../components/common/OverlayBox";
 import Tabs from "./components/Tabs";
+import LabeledInput from "./components/LabeledInput";
 
 const ProductsScreen = () => {
     const products = [
@@ -39,7 +41,19 @@ const ProductsScreen = () => {
     const renderTabContent = () => {
         switch (activeTab) {
             case 0:
-                return <div>General</div>;
+                return <div className={style['create-container']}>
+                    <div className={style['row']}>
+                        <div className={style['col']}>
+                            <LabeledInput label="Product ID*" />
+                            <LabeledInput label="Product Description*" />
+                            <LabeledInput label="UPC" />
+                        </div>
+                        <div className={style['col']}>
+                            <LabeledInput label="Special Instructions" />
+                        </div>
+                    </div>
+
+                </div>;
             case 1:
                 return <div>Physical Characteristics</div>;
             case 2:

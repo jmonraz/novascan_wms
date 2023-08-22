@@ -30,6 +30,11 @@
     color: #f3f4f2;
 }
 
+.row-icons {
+    display: flex;
+    gap: 20px;
+}
+
 .close-icon {
     cursor: pointer;
     color: #f3f4f2;
@@ -39,5 +44,17 @@
 }
 
 .close-icon:hover {
+    color: #806491;
+}
+
+.save-icon {
+    cursor: pointer;
+    color: #f3f4f2;
+    transition: color 0.3s ease-in-out;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.save-icon:hover {
     color: #806491;
 }

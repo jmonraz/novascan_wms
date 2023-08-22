@@ -23,7 +23,12 @@ const SideMenu = () => {
                     style={{ textDecoration: "none", color: "inherit" }}>
                     <img src={itemIcon} alt="product_icon" /><p className="sidemenu-icon-label">Products</p>
                 </Link>
-                <div className="icon-container" data-label="Shipping"><img src={shippingTruckIcon} alt="shipping_icon" /><p className="sidemenu-icon-label">Shipping</p></div>
+                <Link to={"/Home/Shipping"}
+                    className="icon-container"
+                    data-label="Shipping"
+                    style={{ textDecoration: "none", color: "inherit" }}>
+                    <img src={shippingTruckIcon} alt="shipping_icon" /><p className="sidemenu-icon-label">Shipping</p>
+                </Link>
                 <div className="icon-container" data-label="Receiving"><img src={receivingIcon} alt="receiving_icon" /><p className="sidemenu-icon-label">Receiving</p></div>
                 <div className="icon-container" data-label="Inventory"><img src={inventoryIcon} alt="inventory_icon" /><p className="sidemenu-icon-label">Inventory</p></div>
 

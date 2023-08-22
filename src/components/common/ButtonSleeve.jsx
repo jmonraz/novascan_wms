@@ -2,7 +2,7 @@ import React from "react";
 import style from './ButtonSleeve.module.css';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrashAlt, faEdit, faSearch, faFilePdf, faFileExcel } from "@fortawesome/free-solid-svg-icons";
 // create ButtonSleeve component that will render the following buttons
 // add, delete, edit, 
 // no props needed
@@ -11,14 +11,23 @@ const ButtonSleeve = ({ onAdd, onDelete, onEdit }) => {
     return (
         <>
             <div className={style["button-sleeve"]}>
-                <div className={`${style["button-sleeve-icon"]} ${style["green"]}`} onClick={onAdd}>
+                <div className={`${style["button-sleeve-icon"]} ${style["orange"]}`} onClick={onAdd}>
                     <FontAwesomeIcon icon={faPlus} />
                 </div>
-                <div className={`${style["button-sleeve-icon"]} ${style["red"]}`} onClick={onDelete}>
+                <div className={`${style["button-sleeve-icon"]} ${style["orange"]}`} onClick={onDelete}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                 </div>
                 <div className={`${style["button-sleeve-icon"]} ${style["orange"]}`} onClick={onEdit}>
                     <FontAwesomeIcon icon={faEdit} />
+                </div>
+                <div className={`${style["button-sleeve-icon"]} ${style["orange"]}`} onClick={onEdit}>
+                    <FontAwesomeIcon icon={faSearch} />
+                </div>
+                <div className={`${style["button-sleeve-icon"]} ${style["orange"]}`} onClick={onEdit}>
+                    <FontAwesomeIcon icon={faFilePdf} />
+                </div>
+                <div className={`${style["button-sleeve-icon"]} ${style["orange"]}`} onClick={onEdit}>
+                    <FontAwesomeIcon icon={faFileExcel} />
                 </div>
             </div>
         </>

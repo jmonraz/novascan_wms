@@ -14,7 +14,7 @@ const Tabs = ({ activeTab, onTabChange }) => {
         "UPCs",
         "Versioning",
         "Inventory",
-        "Billing Containers"
+        "Change History"
     ]
 
     return (
