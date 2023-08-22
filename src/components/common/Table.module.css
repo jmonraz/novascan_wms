@@ -1,0 +1,80 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    border: 1px solid #806491;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+.table th {
+    background-color: #00457E;
+    color: #ffffff;
+    padding: 2px 15px;
+    border-bottom: 2px solid #806491;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+
+.table th div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Distribute space between the column name and the sort icon */
+}
+
+.table td {
+    padding: 4px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    color: #333;
+
+}
+
+.evenRow {
+    background-color: #f2f2f2;
+}
+
+.oddRow {
+    background-color: #fff;
+}
+
+.resizeHandle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    cursor: ew-resize;
+    z-index: 2;
+    background-color: #806491;
+}
+
+th {
+    min-width: 100px;
+    /* Set a minimum width for the table headers */
+}
+
+.table th span.column-name:after {
+    cursor: pointer;
+    content: '⬍';
+    /* Default state, indicating sortable */
+    font-size: 16px;
+    margin-left: 5px;
+    opacity: 0.7;
+}
+
+.table th span.column-name[aria-sort="ascending"]:after {
+    content: '🔼';
+    /* Ascending sort icon */
+    opacity: 1;
+}
+
+.table th span.column-name[aria-sort="descending"]:after {
+    content: '🔽';
+    /* Descending sort icon */
+    opacity: 1;
+}

@@ -1,0 +1,35 @@
+.button-sleeve {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+    gap: 5px;
+}
+
+.button-sleeve-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.5s ease-in-out;
+}
+
+.button-sleeve-icon:hover {
+    background-color: #00457E;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.orange {
+    background-color: orange;
+}

@@ -1,38 +1,257 @@
-.App {
-  text-align: center;
+.app-container {
+  width: 100%;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main-input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  font-size: 16px;
+  background-color: #f4f4f4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.main-input:focus {
+  border-color: #806491;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-button {
+  width: 100%;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #806491;
+  color: #ffffff;
+  transition: background-color 0.3s ease-in;
+}
+
+.main-button:hover {
+  background-color: #B9848C;
+}
+
+.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  background-color: #00457E;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 0px 25px;
+  z-index: 999;
+}
+
+.navbar-sleeve {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.side-menu {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  height: 100%;
+  width: auto;
+  max-width: 250px;
+  background-color: #00457E;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 999;
+  border-top: 1px solid rgb(136, 136, 136);
+}
+
+.icon-container {
+  position: relative;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.profile-icon-container {
+  position: relative;
+  border-radius: 5px;
+  padding: 10px 15px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+  transition: background-color 0.5s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+.profile-icon-container img {
+  width: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.profile-icon-container:hover {
+  background-color: #2c5679;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.icon-container img {
+  width: 28px;
+}
+
+/* Add this for the label styling */
+/* .icon-container::before {
+  content: attr(data-label);
+  position: absolute;
+  left: 100%;
+  background-color: rgba(201, 201, 201, 0.9);
+  color: #806491;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 0px 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: none;
+  text-overflow: ellipsis;
+  transition: opacity 0.5s ease-in-out;
+} */
+
+
+
+.icon-container:hover {
+  background-color: #2c5679;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.icon-container:active {
+  background-color: #254865;
+}
+
+/* Show the label on hover */
+.icon-container:hover::before {
+  opacity: 1;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #806491;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  width: auto;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.dropdown-menu p {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 0;
+  color: #333;
+  transition: background-color 0.3s ease-in;
+  white-space: nowrap;
+}
+
+.dropdown-menu p:hover {
+  background-color: #806491;
+  color: #ffffff;
+}
+
+.search-input {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+
+}
+
+@media (max-width: 1080px) {
+  .icon-container img {
+    width: 25px;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+/* Modified and added CSS for hover effect */
+.side-menu {
+  transition: width 0.5s ease-in-out;
+  /* Smooth transition for width */
+  width: 60px;
+  /* Initial fixed width */
+}
+
+.side-menu:hover {
+  width: 250px;
+  /* Expanded width on hover */
+}
+
+/* Initially hide the label */
+.sidemenu-icon-label {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  /* Ensure it doesn't interfere with other interactions */
+}
+
+/* Show the label when the entire side menu is hovered */
+.side-menu:hover .sidemenu-icon-label {
+  opacity: 1;
+}
+
+.sidemenu-icon-label {
+  margin-left: 10px;
+  /* Spacing between icon and label */
+  opacity: 0;
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.3s ease-in-out, width 0.5s ease-in-out;
+}
+
+.side-menu:hover .sidemenu-icon-label {
+  opacity: 1;
+  width: auto;
+  /* Let the label take its natural width */
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding-left: 60px;
+  padding-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  flex-grow: 1;
+  flex: 1;
+  min-width: 780px;
+  min-height: 600px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 2px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgba(9, 79, 136, 0.2);
+  word-wrap: break-word;
 }
