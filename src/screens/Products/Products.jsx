@@ -34,11 +34,41 @@ const ProductsScreen = () => {
         setIsAdd(false);
     };
 
+    const [activeTab, setActiveTab] = useState(0);
+
+    const renderTabContent = () => {
+        switch (activeTab) {
+            case 0:
+                return <div>General</div>;
+            case 1:
+                return <div>Physical Characteristics</div>;
+            case 2:
+                return <div>Serial Numbers</div>;
+            case 3:
+                return <div>Shipping Characteristics</div>;
+            case 4:
+                return <div>Valuation & Pricing</div>;
+            case 5:
+                return <div>Billing Factors</div>;
+            case 6:
+                return <div>UPCs</div>;
+            case 7:
+                return <div>Versioning</div>;
+            case 8:
+                return <div>Inventory</div>;
+            case 9:
+                return <div>Billing Containers</div>;
+            default:
+                return <div>General</div>;
+        }
+    };
+
     return (
         <>
             <div className="container">
                 {isAdd && <OverlayBox onClose={onAddClose} title="Create Product">
-                    <Tabs />
+                    <Tabs activeTab={activeTab} onTabChange={setActiveTab} />
+                    {renderTabContent()}
                 </OverlayBox>}
                 <div className="box">
                     <ButtonSleeve onAdd={onAdd} onDelete={onDelete} onEdit={onEdit} />
