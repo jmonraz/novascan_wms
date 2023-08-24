@@ -8,7 +8,9 @@ const ReceivingScreen = () => {
     const [selectedRows, setSelectedRows] = useState([]);
 
     const handleRowSelected = (event) => {
-        setSelectedRows(event.api.getSelectedRows());
+        setTimeout(() => {
+            setSelectedRows(event.api.getSelectedRows());
+        }, 0);
     };
 
     const columnDefs = [

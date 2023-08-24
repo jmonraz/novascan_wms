@@ -8,6 +8,7 @@ const Shipping = () => {
     const [selectedRows, setSelectedRows] = useState([]);
 
     const handleRowSelected = (event) => {
+        console.log(selectedRows);
         setSelectedRows(event.api.getSelectedRows());
     };
 
