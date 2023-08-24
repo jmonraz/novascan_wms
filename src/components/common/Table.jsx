@@ -6,6 +6,7 @@ import style from './Table.module.css';
 const Table = ({ columns, data }) => {
     const [sortConfig, setSortConfig] = useState(null);
     const resizingColumn = useRef(null);
+    const columnRefs = useRef(columns.map(() => React.createRef()));
     const MAX_WIDTH = 350;
 
     const handleMouseDown = e => {
@@ -26,11 +27,22 @@ const Table = ({ columns, data }) => {
 
             // Adjust the column width based on this difference, but ensure it doesn't exceed the maximum width
             const newWidth = Math.min(resizingColumn.current.startWidth + diffX, MAX_WIDTH);
-            if (newWidth > 250) {  // Assuming 50px as the minimum column width
+            if (newWidth > 50) {  // Assuming 50px as the minimum column width
                 resizingColumn.current.element.style.width = `${newWidth}px`;
+
+                // Force a reflow to ensure updated offsetWidth
+                const table = resizingColumn.current.element.closest('table');
+                // eslint-disable-next-line no-unused-expressions
+                table.offsetHeight;  // Accessing offsetHeight to force a reflow
+
+                // Adjusting the table width
+                const totalTableWidth = Array.from(table.querySelectorAll('th')).reduce((acc, th) => acc + th.offsetWidth, 0);
+                if (totalTableWidth > 1400) {
+                    table.style.width = `${totalTableWidth}px`;
+                }
             }
         }
-    }
+    };
 
     const handleMouseUp = () => {
         window.removeEventListener('mousemove', handleMouseMove);
@@ -64,33 +76,40 @@ const Table = ({ columns, data }) => {
         setSortConfig({ key, direction });
     }
     return (
-        <table className={style['table']}>
-            <thead>
-                <tr>
-                    {columns.map(column => (
-                        <th key={column}>
-                            <div>
-                                <span className={style['column-name']} onClick={() => requestSort(column)} aria-sort={sortConfig && sortConfig.key === column ? sortConfig.direction : ''}>
-                                    {column}
-                                </span>
-                                <div className={style['resizeHandle']} onMouseDown={handleMouseDown}></div>
-                            </div>
-                        </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {sortedData.map((row, rowIndex) => (
-                    <tr key={rowIndex} className={rowIndex % 2 === 0 ? style['evenRow'] : style['oddRow']}>
-                        {columns.map((column, columnIndex) => (
-                            <td key={columnIndex}>
-                                {row[column]}
-                            </td>
+        <div className={style['tableContainer']}>
+            <table className={style['table']}>
+                <thead>
+                    <tr>
+                        {columns.map((column, index) => (
+                            <th key={column} ref={columnRefs.current[index]}>
+                                <div>
+                                    <span className={style['column-name']} onClick={() => requestSort(column)} aria-sort={sortConfig && sortConfig.key === column ? sortConfig.direction : ''}>
+                                        {column}
+                                    </span>
+                                    <div className={style['resizeHandle']} onMouseDown={handleMouseDown}></div>
+                                </div>
+                            </th>
                         ))}
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <div className={style['tbodyContainer']}>
+                    <tbody>
+                        {[...Array(19).keys()].map((_, rowIndex) => (
+                            <tr key={rowIndex} className={rowIndex % 2 === 0 ? style['evenRow'] : style['oddRow']}>
+                                {columns.map((column, columnIndex) => (
+                                    <td
+                                        key={columnIndex}
+                                        style={{ width: columnRefs.current[columnIndex].current ? `${columnRefs.current[columnIndex].current.offsetWidth}px` : undefined }}
+                                    >
+                                        {sortedData[rowIndex] && sortedData[rowIndex][column] ? sortedData[rowIndex][column] : ''}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </div>
+            </table>
+        </div>
     );
 };
 

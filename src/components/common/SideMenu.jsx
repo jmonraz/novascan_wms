@@ -29,7 +29,12 @@ const SideMenu = () => {
                     style={{ textDecoration: "none", color: "inherit" }}>
                     <img src={shippingTruckIcon} alt="shipping_icon" /><p className="sidemenu-icon-label">Shipping</p>
                 </Link>
-                <div className="icon-container" data-label="Receiving"><img src={receivingIcon} alt="receiving_icon" /><p className="sidemenu-icon-label">Receiving</p></div>
+                <Link to={"/Home/Receiving"}
+                    className="icon-container"
+                    data-label="Receiving"
+                    style={{ textDecoration: "none", color: "inherit" }}>
+                    <img src={receivingIcon} alt="receiving_icon" /><p className="sidemenu-icon-label">Receiving</p>
+                </Link>
                 <div className="icon-container" data-label="Inventory"><img src={inventoryIcon} alt="inventory_icon" /><p className="sidemenu-icon-label">Inventory</p></div>
 
                 <div className="icon-container" data-label="Billing"><img src={billingIcon} alt="billing_icon" /><p className="sidemenu-icon-label">Billing</p></div>

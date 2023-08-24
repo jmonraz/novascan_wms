@@ -2,18 +2,40 @@ import React, { useState } from "react";
 import style from "./Products.module.css";
 
 import ButtonSleeve from "../../components/common/ButtonSleeve";
-import Table from "../../components/common/Table";
+import CustomTable from "../../components/common/CustomTable";
 import OverlayBox from "../../components/common/OverlayBox";
 import Tabs from "./components/Tabs";
 import LabeledInput from "./components/LabeledInput";
 
 const ProductsScreen = () => {
-    const products = [
-        { "Product ID": "test-01", "Product Description": "a test product", "UPC": "T019K92392", "Unit of Measure": "Each", "Customer ID": "CUS001" },
-        { "Product ID": "test-10", "Product Description": "another test product", "UPC": "X023KL91", "Unit of Measure": "Each", "Customer ID": "CUS099" },
-        { "Product ID": "test-20", "Product Description": "yet another test product", "UPC": "A029TJ12", "Unit of Measure": "Each", "Customer ID": "CUS010" },
-        { "Product ID": "test-30", "Product Description": "final test product", "UPC": "Z019LQ34", "Unit of Measure": "Each", "Customer ID": "CUS111" },
+    const [selectedRows, setSelectedRows] = useState([]);
+
+    const handleRowSelected = (event) => {
+        setSelectedRows(event.api.getSelectedRows());
+    };
+
+    const columnDefs = [
+        { headerName: 'Product ID', field: 'productID', resizable: true, filter: 'agTextColumnFilter', sortable: true },
+        { headerName: 'Product Description', field: 'productDescription', resizable: true, filter: 'agTextColumnFilter', sortable: true },
+        { headerName: 'UPC', field: 'UPC', resizable: true, filter: 'agTextColumnFilter', sortable: true },
+        { headerName: 'Unit of Measure', field: 'unitOfMeasure', resizable: true, filter: 'agTextColumnFilter', sortable: true },
+        { headerName: 'Customer ID', field: 'customerID', resizable: true, filter: 'agTextColumnFilter', sortable: true },
+        { headerName: 'On Hand', field: 'onHand', resizable: true, filter: 'agTextColumnFilter', sortable: true },
+        { headerName: 'Available', field: 'available', resizable: true, filter: 'agTextColumnFilter', sortable: true },
     ];
+    const products = [
+        { "Product ID": "test-01", "Product Description": "a test product", "UPC": "T019K92392", "Unit of Measure": "Each", "Customer ID": "CUS001", "On Hand": "1200", "Available": "600" },
+        { "Product ID": "test-10", "Product Description": "another test product", "UPC": "X023KL91", "Unit of Measure": "Each", "Customer ID": "CUS099", "On Hand": "1200", "Available": "600" },
+        { "Product ID": "test-20", "Product Description": "yet another test product", "UPC": "A029TJ12", "Unit of Measure": "Each", "Customer ID": "CUS010" },
+        { "Product ID": "test-30", "Product Description": "final test product", "UPC": "Z019LQ34", "Unit of Measure": "Each", "Customer ID": "CUS111", "On Hand": "1200", "Available": "600" },
+    ];
+
+    const rowData = [
+        { "productID": "test-01", "productDescription": "a test product", "UPC": "T019K92392", "unitOfMeasure": "Each", "customerID": "CUS001", "onHand": "1200", "available": "600" },
+        { "productID": "test-10", "productDescription": "another test product", "UPC": "X023KL91", "unitOfMeasure": "Each", "customerID": "CUS099", "onHand": "1200", "available": "600" },
+        { "productID": "test-20", "productDescription": "yet another test product", "UPC": "A029TJ12", "unitOfMeasure": "Each", "customerID": "CUS010" },
+        { "productID": "test-30", "productDescription": "final test product", "UPC": "Z019LQ34", "unitOfMeasure": "Each", "customerID": "CUS111", "onHand": "1200", "available": "600" },
+    ]
 
     const [isAdd, setIsAdd] = useState(false);
 
@@ -86,8 +108,7 @@ const ProductsScreen = () => {
                 </OverlayBox>}
                 <div className="box">
                     <ButtonSleeve onAdd={onAdd} onDelete={onDelete} onEdit={onEdit} />
-                    <hr />
-                    <Table columns={Object.keys(products[0])} data={products} />
+                    <CustomTable columnDefs={columnDefs} rowData={rowData} onRowSelected={handleRowSelected} />
                 </div>
             </div>
         </>

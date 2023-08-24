@@ -255,3 +255,8 @@
   background-color: rgba(9, 79, 136, 0.2);
   word-wrap: break-word;
 }
+
+.test-table {
+  display: flex;
+  flex-direction: column;
+}

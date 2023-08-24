@@ -5,6 +5,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import ProductsScreen from "../Products/Products";
 import Shipping from "../Shipping";
 import MainLayout from "../../components/common/MainLayout";
+import ReceivingScreen from "../Receiving/ReceivingScreen";
 
 const HomeScreen = ({ handleLogout }) => {
     return (
@@ -20,6 +21,9 @@ const HomeScreen = ({ handleLogout }) => {
                     <Route
                         path="Shipping"
                         element={<Shipping />} />
+                    <Route
+                        path="Receiving"
+                        element={<ReceivingScreen />} />
                 </Route>
 
             </Routes>
