@@ -24,12 +24,7 @@ const ProductsScreen = () => {
         { headerName: 'On Hand', field: 'onHand', resizable: true, filter: 'agTextColumnFilter', sortable: true },
         { headerName: 'Available', field: 'available', resizable: true, filter: 'agTextColumnFilter', sortable: true },
     ];
-    const products = [
-        { "Product ID": "test-01", "Product Description": "a test product", "UPC": "T019K92392", "Unit of Measure": "Each", "Customer ID": "CUS001", "On Hand": "1200", "Available": "600" },
-        { "Product ID": "test-10", "Product Description": "another test product", "UPC": "X023KL91", "Unit of Measure": "Each", "Customer ID": "CUS099", "On Hand": "1200", "Available": "600" },
-        { "Product ID": "test-20", "Product Description": "yet another test product", "UPC": "A029TJ12", "Unit of Measure": "Each", "Customer ID": "CUS010" },
-        { "Product ID": "test-30", "Product Description": "final test product", "UPC": "Z019LQ34", "Unit of Measure": "Each", "Customer ID": "CUS111", "On Hand": "1200", "Available": "600" },
-    ];
+
 
     const rowData = [
         { "productID": "test-01", "productDescription": "a test product", "UPC": "T019K92392", "unitOfMeasure": "Each", "customerID": "CUS001", "onHand": "1200", "available": "600" },
