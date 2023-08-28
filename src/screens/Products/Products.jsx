@@ -6,23 +6,25 @@ import CustomTable from "../../components/common/CustomTable";
 import OverlayBox from "../../components/common/OverlayBox";
 import Tabs from "./components/Tabs";
 import LabeledInput from "./components/LabeledInput";
+import DropdownMenu from "../../components/common/DropdownMenu";
 
 const ProductsScreen = () => {
     const [selectedRows, setSelectedRows] = useState([]);
 
     const handleRowSelected = (event) => {
         console.log(selectedRows);
+        console.log('called');
         setSelectedRows(event.api.getSelectedRows());
     };
 
     const columnDefs = [
-        { headerName: 'Product ID', field: 'productID', resizable: true, filter: 'agTextColumnFilter', sortable: true },
-        { headerName: 'Product Description', field: 'productDescription', resizable: true, filter: 'agTextColumnFilter', sortable: true },
-        { headerName: 'UPC', field: 'UPC', resizable: true, filter: 'agTextColumnFilter', sortable: true },
-        { headerName: 'Unit of Measure', field: 'unitOfMeasure', resizable: true, filter: 'agTextColumnFilter', sortable: true },
-        { headerName: 'Customer ID', field: 'customerID', resizable: true, filter: 'agTextColumnFilter', sortable: true },
-        { headerName: 'On Hand', field: 'onHand', resizable: true, filter: 'agTextColumnFilter', sortable: true },
-        { headerName: 'Available', field: 'available', resizable: true, filter: 'agTextColumnFilter', sortable: true },
+        { headerName: 'Product ID', field: 'productID', resizable: true, filter: 'agTextColumnFilter', sortable: true, flex: 2, minWidth: 60 },
+        { headerName: 'Product Description', field: 'productDescription', resizable: true, filter: 'agTextColumnFilter', sortable: true, flex: 3, minWidth: 60 },
+        { headerName: 'UPC', field: 'UPC', resizable: true, filter: 'agTextColumnFilter', sortable: true, flex: 1, minWidth: 60 },
+        { headerName: 'Unit of Measure', field: 'unitOfMeasure', resizable: true, filter: 'agTextColumnFilter', sortable: true, flex: 1, minWidth: 60 },
+        { headerName: 'Account', field: 'customerID', resizable: true, filter: 'agTextColumnFilter', sortable: true, flex: 2, minWidth: 60 },
+        { headerName: 'On Hand', field: 'onHand', resizable: true, filter: 'agTextColumnFilter', sortable: true, flex: 1, minWidth: 60 },
+        { headerName: 'Available', field: 'available', resizable: true, filter: 'agTextColumnFilter', sortable: true, flex: 1, minWidth: 60 },
     ];
 
 
@@ -56,10 +58,32 @@ const ProductsScreen = () => {
 
     const [activeTab, setActiveTab] = useState(0);
 
+    const options = [
+        'CUS001',
+        'CUS002',
+        'CUS003',
+        'CUS011',
+        'CUS012',
+        'CUS013',
+        'CUS111',
+        'CUS112',
+        'CUS113',
+
+    ]
+
     const renderTabContent = () => {
         switch (activeTab) {
             case 0:
                 return <div className={style['create-container']}>
+                    <div className={style['row']}>
+                        <div className={style['col']}>
+
+                            <DropdownMenu options={options} />
+                        </div>
+                        <div className={style['col']}>
+
+                        </div>
+                    </div>
                     <div className={style['row']}>
                         <div className={style['col']}>
                             <LabeledInput label="Product ID*" />

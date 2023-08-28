@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-const CustomTable = ({ columnDefs, rowData, onRowSelected }) => {
+const CustomTable = ({ columnDefs, rowData, onSelectionChanged }) => {
+    const gridRef = useRef();
+
+    const handleSelectionChange = useCallback((event) => {
+        const selectedRowsData = event.api.getSelectedRows();
+        if (onSelectionChanged) {
+            onSelectionChanged(selectedRowsData);
+        }
+    }, [onSelectionChanged]);
 
     const getRowStyle = params => {
         if (params.node.isSelected()) {
@@ -19,7 +27,7 @@ const CustomTable = ({ columnDefs, rowData, onRowSelected }) => {
     };
 
     return (
-        <div className="ag-theme-alpine" style={{ height: 530, width: '100%' }}>
+        <div className="ag-theme-alpine" style={{ height: '90%', width: '100%' }}>
             <style>
                 {`
                 .ag-theme-alpine .ag-cell {
@@ -42,11 +50,13 @@ const CustomTable = ({ columnDefs, rowData, onRowSelected }) => {
             `}
             </style>
             <AgGridReact
+                ref={gridRef}
                 columnDefs={columnDefs}
                 rowData={rowData}
-                rowSelection="multiple"
-                onRowSelected={onRowSelected}
+                rowSelection={'multiple'}
                 getRowStyle={getRowStyle}
+                suppressRowClickSelection={true}
+                onSelectionChanged={handleSelectionChange}
             />
         </div>
     );
